@@ -1,0 +1,133 @@
+<template>
+  <v-app>
+    <v-layout wrap row>
+      <v-flex xs12 md6 class="login-wrap">
+        <v-layout align-center justify-center column>
+          <router-link to="/" class="logo">
+            <img :src="require('@/assets/images/logo.svg')" contain height="20" width="90">
+          </router-link>
+          <h1>Request for account</h1>
+          <div class="form login">
+            <form role="form">
+              <div
+                class="alert"
+                v-if="send"
+              >We have received your request and will get in touch with you within 2 days</div>
+              <input
+                type="text"
+                id="regname"
+                placeholder="Your name"
+                required="required"
+                v-model="username"
+              >
+              <input
+                type="text"
+                id="regecompany"
+                placeholder="Company name"
+                required="required"
+                v-model="companyName"
+              >
+              <input
+                type="email"
+                id="regemail"
+                placeholder="Company email"
+                required="required"
+                v-model="companyEmail"
+                v-on:keyup.enter="submitRequest(email)"
+              >
+              <v-btn
+                id="loginbutton"
+                :loading="loading"
+                :disabled="loading"
+                color="#02b875"
+                block
+                depressed
+                @click="submitRequest(username,companyName,companyEmail)"
+                class="submit-button"
+              >Submit</v-btn>
+            </form>
+          </div>
+        </v-layout>
+      </v-flex>
+      <v-flex xs12 md6 class="accounts-wrap" v-show="$vuetify.breakpoint.mdAndUp">
+        <v-layout align-center justify-center column class="carousel-wrap">
+          <zlott-carousel/>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+  </v-app>
+</template>
+
+<script>
+import api from "@/api";
+import ZlottCarousel from "@/components/ZlottCarousel.vue";
+export default {
+  name: "login",
+  components: {
+    ZlottCarousel
+  },
+  data() {
+    return {
+      error: false,
+      loader: null,
+      loading: false,
+      username: "",
+      companyName: "",
+      companyEmail: "",
+      send: false
+    };
+  },
+  methods: {
+    submitRequest(username, companyName, companyEmail) {
+      const payload = {
+        username: username,
+        company_name: companyName,
+        company_email: companyEmail
+      };
+      api.auth.requestAccount(payload).then(res => console.log(res.data));
+      this.username = "";
+      this.companyName = "";
+      this.companyEmail = "";
+      this.send = true;
+    }
+  }
+};
+</script>
+<style lang="scss" scoped>
+@import "@/assets/scss/_animations.scss";
+.logo {
+  padding-top: 50px;
+}
+h1 {
+  color: $login-color;
+  font-size: 36px;
+  line-height: 1.1;
+  font-weight: 500;
+  padding: 50px 0;
+  margin: 20px 0 10px;
+}
+.form {
+  margin: 0 20px;
+  max-width: 380px;
+  width: 100%;
+}
+.accounts-wrap {
+  background-color: $login-color;
+}
+.carousel-wrap {
+  width: 290px;
+  height: 475px;
+  margin: 50px auto;
+  background-color: #cbcbcb;
+  transform: rotate(2deg);
+}
+.alert {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+</style>

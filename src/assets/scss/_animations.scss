@@ -1,0 +1,40 @@
+@keyframes swing {
+  15% {
+    transform: translateX(5px);
+  }
+  30% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  65% {
+    transform: translateX(-3px);
+  }
+  80% {
+    transform: translateX(2px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+@keyframes rotating_card {
+  0% {
+    transform: rotate(-4deg);
+  }
+  25% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(-4deg);
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
