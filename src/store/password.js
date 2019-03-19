@@ -21,6 +21,10 @@ export default {
     resetError: false,
     resetLoading: false
   },
+  getters: {
+    emailCompleted: state => state.emailCompleted,
+    emailError: state => state.emailError
+  },
   actions: {
     // resetPassword({ commit }, { uid, token, password1, password2 }) {
     //   commit(PASSWORD_RESET_BEGIN);

@@ -9,6 +9,16 @@
           <h1>Forgot password</h1>
           <div class="form login">
             <form role="form">
+              <div
+                id="complete"
+                class="alert"
+                v-if="emailCompleted"
+              >We have received your request. Please, check your email</div>
+              <div
+                id="error"
+                class="alert red"
+                v-if="emailError"
+              >Something goes wrong. Try again please</div>
               <input
                 type="email"
                 id="regemail"
@@ -41,6 +51,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import ZlottCarousel from "@/components/ZlottCarousel.vue";
 export default {
   name: "login",
@@ -55,11 +66,12 @@ export default {
       email: ""
     };
   },
+  computed: mapGetters("password", ["emailCompleted", "emailError"]),
   methods: {
     submitRecover(email) {
       const payload = { email: email };
-      console.log(payload);
       this.$store.dispatch("password/sendPasswordResetEmail", payload);
+      this.email = "";
     }
   }
 };
@@ -117,5 +129,17 @@ h1 {
   margin: 50px auto;
   background-color: #cbcbcb;
   transform: rotate(2deg);
+}
+.alert {
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+  color: #31708f;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+.red {
+  background-color: #ff6961;
 }
 </style>
