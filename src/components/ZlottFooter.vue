@@ -15,3 +15,9 @@ export default {
 };
 </script>
 
+<style lang="scss" scoped>
+.container {
+  padding: 12px 24px;
+  max-width: 1170px;
+}
+</style>

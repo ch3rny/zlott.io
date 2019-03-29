@@ -14,13 +14,15 @@
                 v-if="send"
               >We have received your request and will get in touch with you within 2 days</div>
               <input
+                class="zlott-input"
                 type="text"
                 id="regname"
-                placeholder="Your name"
+                placeholder="Your username"
                 required="required"
                 v-model="username"
               >
               <input
+                class="zlott-input"
                 type="text"
                 id="regecompany"
                 placeholder="Company name"
@@ -28,12 +30,13 @@
                 v-model="companyName"
               >
               <input
+                class="zlott-input"
                 type="email"
                 id="regemail"
                 placeholder="Company email"
                 required="required"
-                v-model="companyEmail"
-                v-on:keyup.enter="submitRequest(email)"
+                v-model="email"
+                v-on:keyup.enter="submitRequest(username,companyName,email)"
               >
               <v-btn
                 id="loginbutton"
@@ -42,7 +45,7 @@
                 color="#02b875"
                 block
                 depressed
-                @click="submitRequest(username,companyName,companyEmail)"
+                @click="submitRequest(username,companyName,email)"
                 class="submit-button"
               >Submit</v-btn>
             </form>
@@ -73,21 +76,21 @@ export default {
       loading: false,
       username: "",
       companyName: "",
-      companyEmail: "",
+      email: "",
       send: false
     };
   },
   methods: {
-    submitRequest(username, companyName, companyEmail) {
+    submitRequest(username, companyName, email) {
       const payload = {
         username: username,
         company_name: companyName,
-        company_email: companyEmail
+        email: email
       };
-      api.auth.requestAccount(payload).then(res => console.log(res.data));
+      api.auth.requestAccount(payload);
       this.username = "";
       this.companyName = "";
-      this.companyEmail = "";
+      this.email = "";
       this.send = true;
     }
   }

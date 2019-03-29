@@ -10,11 +10,10 @@ export default {
   computed: mapGetters("auth", ["isRemembered"]),
   created() {
     this.$store.dispatch("auth/initialize");
-  },
-  beforeDestroy() {
-    if (!this.isRemebered) {
-      this.$store.dispatch("auth/removeToken");
+    if (!this.isRemembered) {
+      this.$store.dispatch("auth/logout");
     }
-  }
+  },
+  
 };
 </script>

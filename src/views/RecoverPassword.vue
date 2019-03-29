@@ -19,17 +19,20 @@
                 class="alert red"
                 v-if="emailError"
               >Something goes wrong. Try again please</div>
+
               <input
-                type="email"
-                id="regemail"
+                class="zlott-input"
+                v-validate="'required|email'"
+                name="email"
+                type="text"
                 placeholder="Registered email"
-                required="required"
                 v-model="email"
+                lazy
                 v-on:keyup.enter="submitRecover(email)"
               >
+              <span>{{ errors.first('email') }}</span>
+
               <v-btn
-                :loading="loading"
-                :disabled="loading"
                 color="#02b875"
                 block
                 depressed
@@ -61,17 +64,26 @@ export default {
   data() {
     return {
       error: false,
-      loader: null,
-      loading: false,
+      isVerified: false,
       email: ""
     };
   },
+  watch: {
+    email: function() {
+      this.$validator.validate().then(valid => {
+        valid ? (this.isVerified = true) : (this.isVerified = false);
+      });
+    }
+  },
+
   computed: mapGetters("password", ["emailCompleted", "emailError"]),
   methods: {
     submitRecover(email) {
-      const payload = { email: email };
-      this.$store.dispatch("password/sendPasswordResetEmail", payload);
-      this.email = "";
+      if (this.isVerified) {
+        const payload = { email: email };
+        this.$store.dispatch("password/sendPasswordResetEmail", payload);
+        this.$validator.reset();
+      }
     }
   }
 };
@@ -141,5 +153,11 @@ h1 {
 }
 .red {
   background-color: #ff6961;
+}
+.is-valid {
+  border-color: green !important;
+}
+.is-invalid {
+  border-color: red !important;
 }
 </style>

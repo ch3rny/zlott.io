@@ -3,7 +3,7 @@
     <zlott-nav/>
     <v-content>
       <div class="banner">
-        <v-container>
+        <v-container class="zlott-container">
           <v-layout wrap>
             <v-flex xs12 sm5 order-sm1 order-xs2>
               <v-layout align-left justify-center column fill-height>
@@ -27,7 +27,7 @@
         </v-container>
       </div>
       <div class="testimonial">
-        <v-container>
+        <v-container class="zlott-container">
           <v-layout wrap justify-center>
             <v-flex xs12 class="text-xs-center">
               <h3>Leading brands trust Zlott</h3>
@@ -39,7 +39,7 @@
         </v-container>
       </div>
       <div class="intro">
-        <v-container>
+        <v-container class="zlott-container">
           <v-layout wrap justify-center>
             <v-flex xs12 class="text-xs-center">
               <h3>Leading brands trust Zlott</h3>
@@ -56,7 +56,7 @@
         </v-container>
       </div>
       <div class="build">
-        <v-container>
+        <v-container class="zlott-container">
           <v-layout wrap justify-center>
             <v-flex xs12 class="text-xs-center">
               <h3>Let's build great teams with Zlott</h3>

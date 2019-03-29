@@ -10,6 +10,7 @@
           <div class="form login">
             <form role="form" id="login-form">
               <input
+                class="zlott-input"
                 type="email"
                 id="regemail"
                 v-model="email"
@@ -17,6 +18,7 @@
                 required="required"
               >
               <input
+                class="zlott-input"
                 type="password"
                 id="pwd"
                 v-model="password"
@@ -32,7 +34,8 @@
                 hide-details
               />
               <transition name="swing">
-                <div class="login-error text-xs-center" v-if="errorLogin">Invalid login credentials.
+                <div class="login-error text-xs-center" v-if="errorLogin">
+                  Invalid login credentials.
                   <br>Please enter correct details.
                 </div>
               </transition>
