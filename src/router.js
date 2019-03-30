@@ -14,6 +14,7 @@ import AdminUserEdit from "./views/admin/AdminUserEdit.vue";
 import AdminAcceptRequest from "./views/admin/AdminAcceptRequest.vue";
 import AdminInDev from "./views/admin/AdminInDev.vue";
 //
+import JobPage from "./views/JobPage.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -38,6 +39,11 @@ export default new Router({
       path: "/request",
       name: "request",
       component: RequestAccout
+    },
+    {
+      path: "/job",
+      name: "job",
+      component: JobPage
     },
     {
       path: "/admin_32xtv",
