@@ -1,12 +1,14 @@
 <template>
-  <v-layout>
+  <v-layout wrap>
+    <v-flex xs12>
+      <p class="title">Confirm User Request</p>
+    </v-flex>
     <v-flex xs12 md8 lg6>
-      <p class="title">Accepting User Request</p>
       <form>
         <v-text-field
-          v-model="user.username"
-          v-validate="'required|max:25'"
-          :counter="25"
+          v-model="user.name"
+          v-validate="'required|max:150'"
+          :counter="150"
           :error-messages="errors.collect('username')"
           label="Username"
           data-vv-name="username"
@@ -22,51 +24,97 @@
         ></v-text-field>
         <v-text-field
           v-model="user.company"
-          v-validate="'required'"
+          v-validate="'required|max:150'"
+          :counter="150"
           :error-messages="errors.collect('company')"
           label="Company"
           data-vv-name="company"
           required
         ></v-text-field>
         <v-text-field
-          v-model="user.password1"
+          v-model="user.first_name"
+          v-validate="'required|max:150'"
+          :counter="150"
+          :error-messages="errors.collect('firstName')"
+          label="First Name"
+          data-vv-name="firstName"
+        ></v-text-field>
+        <v-text-field
+          v-model="user.last_name"
+          v-validate="'required|max:150'"
+          :counter="150"
+          :error-messages="errors.collect('secondName')"
+          label="Last Name"
+          data-vv-name="secondName"
+        ></v-text-field>
+        <v-text-field
+          v-model="password"
           v-validate="'required|min:6'"
-          :error-messages="errors.collect('password1')"
+          :error-messages="errors.collect('password')"
           label="Password"
-          data-vv-name="password1"
+          data-vv-name="password"
           required
           append-icon="sync"
-          @click:append="generatePassword()"
+          @click:append="generatePassword"
         ></v-text-field>
-
+        <v-flex>
+          <v-alert :value="error" type="error">
+            <div v-for="(item, key,index) in error" :key="index">{{key}}: {{item}}</div>
+          </v-alert>
+        </v-flex>
         <v-btn @click="createUser()" color="#419bf9" dark>Create User</v-btn>
-        <v-btn color="red" :to="{name: 'adminUsers'}" dark>Cancel</v-btn>
+        <v-btn color="red" :to="{name: 'adminRequests'}" dark>Cancel</v-btn>
       </form>
     </v-flex>
   </v-layout>
 </template>
 
 <script>
+import api from "@/api";
 import randomatic from "randomatic";
 export default {
   data() {
     return {
-      user: { username: "", email: "", company: "", password1: "" }
+      user: {},
+      password: "",
+      error: ""
     };
   },
   methods: {
     generatePassword() {
-      this.$set(this.user, 'password1', randomatic("Aa0!", 10));
-      this.$set(this.user, 'password2', this.user.password1);
-      console.log('fgdf');
+      this.password = randomatic("Aa0", 10);
     },
     createUser() {
-      console.log(this.user);
-      
+      let payload = {
+        username: this.user.name,
+        email: this.user.email,
+        password1: this.password,
+        password2: this.password
+      };
+      let patchPayload = {
+        company: this.company,
+        first_name: this.firstName,
+        last_name: this.lastName
+      };
+      api.user
+        .registerUser(payload)
+        .then(res => {
+          if (res.status == 201) {
+            api.user
+              .patchUser(res.data.id, patchPayload)
+              .then(console.log("modify"));
+            api.user.deleteRequest(this.$route.params.id);
+            this.$forceUpdate;
+            this.$router.push({ name: "adminRequests" });
+          }
+        })
+        .catch(err => (this.error = err.response.data));
     }
   },
   mounted() {
-    this.user = JSON.parse(localStorage.user);
+    api.user
+      .getRequest(this.$route.params.id)
+      .then(res => (this.user = res.data));
   }
 };
 </script>

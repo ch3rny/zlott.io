@@ -18,21 +18,16 @@
               hide-details
             ></v-text-field>
           </v-card-title>
-          <v-data-table
-            :headers="headers"
-            :items="users"
-            :search="search"
-          
-          >
+          <v-data-table :headers="headers" :items="users" :search="search" :loading="loading">
             <template v-slot:items="props">
-              <td class="text-xs-left">{{ props.item.pk }}</td>
+              <td class="text-xs-left">{{ props.item.id }}</td>
               <td class="text-xs-left">{{ props.item.username}}</td>
               <td class="text-xs-left">{{ props.item.first_name}}</td>
               <td class="text-xs-left">{{ props.item.last_name}}</td>
               <td class="text-xs-left">{{ props.item.email}}</td>
               <td class="text-xs-left">{{ props.item.company }}</td>
               <td class="text-xs-left">
-                <v-icon small class="mr-2" @click="editItem(props.item)" color="blue">edit</v-icon>
+                <v-icon small class="mr-2" @click="editItem(props.item.id)" color="blue">edit</v-icon>
                 <v-icon small @click="openRemoveDialog(props.item)" color="red">delete</v-icon>
               </td>
             </template>
@@ -75,7 +70,7 @@ export default {
     return {
       search: "",
       headers: [
-        { text: "ID", align: "left", value: "pk" },
+        { text: "ID", align: "left", value: "id" },
         { text: "User Name", align: "left", value: "username" },
         { text: "First Name", align: "left", value: "first_name" },
         { text: "Second Name", align: "left", value: "last_name" },
@@ -86,16 +81,21 @@ export default {
 
       users: [],
       selectedUser: {},
-      removeDialog: false
+      removeDialog: false,
+      loading: true
     };
   },
   methods: {
-    editItem(item) {
-      this.users.push(item);
+    editItem(id) {
+      this.$router.push({ name: "adminUserEdit", params: { id: id } });
     },
     deleteUser(item) {
-      this.users.splice(this.users.indexOf(item), 1);
-      localStorage.users = JSON.stringify(this.users);
+      api.user
+        .deleteUser(item.id)
+        .then(
+          this.users.splice(this.users.indexOf(item), 1),
+          (this.removeDialog = false)
+        );
     },
     openRemoveDialog(item) {
       this.selectedUser = item;
@@ -103,9 +103,10 @@ export default {
     }
   },
   mounted() {
-    if (localStorage.users) {
-      this.users = JSON.parse(localStorage.users);
-    } else api.user.getUsers().then(res => (this.users = res.data));
+    api.user.getUsers().then(res => {
+      this.users = res.data;
+      this.loading = false;
+    });
   }
 };
 </script>

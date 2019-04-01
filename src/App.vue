@@ -7,12 +7,9 @@
 import { mapGetters } from "vuex";
 
 export default {
-  computed: mapGetters("auth", ["isRemembered"]),
+  computed: mapGetters("auth", ["isRemembered", "user"]),
   created() {
     this.$store.dispatch("auth/initialize");
-    if (!this.isRemembered) {
-      this.$store.dispatch("auth/logout");
-    }
   },
   
 };

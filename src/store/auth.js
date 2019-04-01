@@ -7,7 +7,8 @@ import {
   LOGOUT,
   REMOVE_TOKEN,
   SET_TOKEN,
-  REMEMBER_USER
+  REMEMBER_USER,
+  GET_USER
 } from "./types";
 
 const TOKEN_STORAGE_KEY = "TOKEN_STORAGE_KEY";
@@ -16,13 +17,15 @@ const initialState = {
   authenticating: false,
   error: false,
   token: null,
-  remember: false
+  remember: false,
+  user: {}
 };
 
 const getters = {
   isAuthenticated: state => !!state.token,
   isRemembered: state => state.remember,
-  errorLogin: state => state.error
+  errorLogin: state => state.error,
+  user: state => state.user
 };
 
 const actions = {
@@ -30,10 +33,14 @@ const actions = {
     commit(LOGIN_BEGIN);
     return api.auth
       .login(payload)
-      .then(({ data }) => commit(SET_TOKEN, data.key))
+      .then(({ data }) => {
+        commit(SET_TOKEN, data.key);
+        api.auth.getUser().then(res => commit(GET_USER, res.data));
+      })
       .then(() => {
         commit(LOGIN_SUCCESS);
       })
+
       .catch(() => commit(LOGIN_FAILURE));
   },
   logout({ commit }) {
@@ -45,12 +52,11 @@ const actions = {
   initialize({ commit }) {
     const remember = localStorage.getItem(REMEMBER_USER_FLAG);
     const token = localStorage.getItem(TOKEN_STORAGE_KEY);
-    if (remember) {
-      if (token) {
-        commit(SET_TOKEN, token);
-      } else {
-        commit(REMOVE_TOKEN);
-      }
+    if (token) {
+      commit(SET_TOKEN, token);
+      api.auth.getUser().then(res => commit(GET_USER, res.data));
+    } else {
+      commit(REMOVE_TOKEN);
     }
   },
   rememberUser({ commit }, flag) {
@@ -93,6 +99,9 @@ const mutations = {
   [REMEMBER_USER](state, flag) {
     localStorage.setItem(REMEMBER_USER_FLAG, flag);
     state.remember = flag;
+  },
+  [GET_USER](state, user) {
+    state.user = user;
   }
 };
 

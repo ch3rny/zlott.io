@@ -22,3 +22,5 @@ export const REGISTRATION_SUCCESS = "REGISTRATION_SUCCESS";
 export const SET_TOKEN = "SET_TOKEN";
 export const REMOVE_TOKEN = "REMOVE_TOKEN";
 export const REMEMBER_USER = "REMEMBER_USER";
+export const GET_USER = "GET_USER";
+

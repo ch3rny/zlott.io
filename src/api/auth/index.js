@@ -8,15 +8,14 @@ const login = payload => axios.post(`${BASE_URL}/rest-auth/login/`, payload);
 
 const logout = () => axios.post(`${BASE_URL}/rest-auth/logout/`);
 
+const getUser = () => axios.get(`${BASE_URL}/rest-auth/user/`)
+
 const resetAccountPassword = payload =>
   axios.post(`${BASE_URL}/rest-auth/password/reset/`, payload);
-
-const requestAccount = payload =>
-  axios.post(`${BASE_URL}/rest-auth/request-account/`, payload);
 
 export default {
   login,
   logout,
   resetAccountPassword,
-  requestAccount
+  getUser
 };

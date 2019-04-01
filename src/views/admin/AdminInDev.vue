@@ -5,3 +5,10 @@
     <h2>Please, come later</h2>
   </div>
 </template>
+<style lang="scss" scoped>
+div {
+  margin:20% auto;
+  text-align: center;
+}
+</style>
+

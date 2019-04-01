@@ -94,7 +94,7 @@ export default {
   padding-top: 50px;
 }
 h1 {
-  color: $login-color;
+  color: $zlott-blue-color;
   font-size: 36px;
   line-height: 1.1;
   font-weight: 500;
@@ -133,7 +133,7 @@ h1 {
   }
 }
 .accounts-wrap {
-  background-color: $login-color;
+  background-color: $zlott-blue-color;
 }
 .carousel-wrap {
   width: 290px;

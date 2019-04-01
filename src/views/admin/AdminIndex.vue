@@ -27,7 +27,8 @@
       </v-toolbar-title>
       <v-spacer/>
       <v-toolbar-items>
-        <v-btn flat large color="white" to="/">Log out</v-btn>
+        <v-btn flat large color="white">{{user.username}}</v-btn>
+        <v-btn flat large color="white" to="/">EXIT</v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
@@ -39,6 +40,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   components: {},
   data() {
@@ -64,7 +66,7 @@ export default {
       ]
     };
   },
-  computed: {},
+  computed: mapGetters("auth", ["user"]),
   methods: {},
   created() {}
 };

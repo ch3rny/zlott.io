@@ -83,15 +83,20 @@ export default {
   methods: {
     submitRequest(username, companyName, email) {
       const payload = {
-        username: username,
-        company_name: companyName,
+        name: username,
+        company: companyName,
         email: email
       };
-      api.auth.requestAccount(payload);
-      this.username = "";
-      this.companyName = "";
-      this.email = "";
-      this.send = true;
+      api.user.postRequest(payload).then(res => {
+        if (res.status == 201) {
+          this.username = "";
+          this.companyName = "";
+          this.email = "";
+          this.send = true;
+        } else {
+          console.log("smth goe wrong");
+        }
+      });
     }
   }
 };
@@ -102,7 +107,7 @@ export default {
   padding-top: 50px;
 }
 h1 {
-  color: $login-color;
+  color: $zlott-blue-color;
   font-size: 36px;
   line-height: 1.1;
   font-weight: 500;
@@ -115,7 +120,7 @@ h1 {
   width: 100%;
 }
 .accounts-wrap {
-  background-color: $login-color;
+  background-color: $zlott-blue-color;
 }
 .carousel-wrap {
   width: 290px;
