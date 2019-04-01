@@ -101,7 +101,7 @@ export default {
         .then(res => {
           if (res.status == 201) {
             api.user
-              .patchUser(res.data.id, patchPayload)
+              .patchUser(res.data.user, patchPayload)
               .then(console.log("modify"));
             api.user.deleteRequest(this.$route.params.id);
             this.$forceUpdate;

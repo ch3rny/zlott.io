@@ -4,14 +4,14 @@ import { BASE_URL } from "@/api";
 axios.defaults.xsrfHeaderName = "X-CSRFToken";
 axios.defaults.xsrfCookieName = "csrftoken";
 
-const login = payload => axios.post(`${BASE_URL}/rest-auth/login/`, payload);
+const login = payload => axios.post(`${BASE_URL}/auth/login/`, payload);
 
-const logout = () => axios.post(`${BASE_URL}/rest-auth/logout/`);
+const logout = () => axios.post(`${BASE_URL}/auth/logout/`);
 
-const getUser = () => axios.get(`${BASE_URL}/rest-auth/user/`)
+const getUser = () => axios.get(`${BASE_URL}/auth/user/`)
 
 const resetAccountPassword = payload =>
-  axios.post(`${BASE_URL}/rest-auth/password/reset/`, payload);
+  axios.post(`${BASE_URL}/auth/password/reset/`, payload);
 
 export default {
   login,

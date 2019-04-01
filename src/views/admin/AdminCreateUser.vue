@@ -104,7 +104,7 @@ export default {
         .registerUser(payload)
         .then(res => {
           api.user
-            .patchUser(res.data.id, patchPayload)
+            .patchUser(res.data.user, patchPayload)
             .then(console.log("modify"));
           if (res.status == 201) {
             this.$router.push({ name: "adminUsers" });
