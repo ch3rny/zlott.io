@@ -25,7 +25,8 @@ const getters = {
   isAuthenticated: state => !!state.token,
   isRemembered: state => state.remember,
   errorLogin: state => state.error,
-  user: state => state.user
+  user: state => state.user,
+  isSuperuser: state => state.user.is_superuser
 };
 
 const actions = {

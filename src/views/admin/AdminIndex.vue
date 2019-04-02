@@ -27,7 +27,6 @@
       </v-toolbar-title>
       <v-spacer/>
       <v-toolbar-items>
-        <v-btn flat large color="white">{{user.username}}</v-btn>
         <v-btn flat large color="white" to="/">EXIT</v-btn>
       </v-toolbar-items>
     </v-toolbar>

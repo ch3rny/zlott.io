@@ -1,4 +1,5 @@
 // admin pages
+import AdminLogin from "../views/admin/AdminLogin.vue";
 import AdminIndex from "../views/admin/AdminIndex.vue";
 import AdminUsers from "../views/admin/AdminUsers.vue";
 import AdminCreateUser from "../views/admin/AdminCreateUser.vue";
@@ -8,7 +9,15 @@ import AdminUserEdit from "../views/admin/AdminUserEdit.vue";
 import AdminAcceptRequest from "../views/admin/AdminAcceptRequest.vue";
 import AdminInDev from "../views/admin/AdminInDev.vue";
 //
-const adminRouter = {
+import store from "@/store";
+
+export const adminLoginRouter = {
+  path: "/admin_32xtv/login",
+  name: "adminLogin",
+  component: AdminLogin
+};
+
+export const adminRouter = {
   path: "/admin_32xtv",
   name: "admin",
   component: AdminIndex,
@@ -49,7 +58,12 @@ const adminRouter = {
       name: "adminJobs",
       component: AdminInDev
     }
-  ]
+  ],
+  beforeEnter(to, from, next) {
+    if (store.getters["dashboard/isSuperuser"]) {
+      next();
+    } else {
+      next({ name: "adminLogin" });
+    }
+  }
 };
-
-export default adminRouter;
