@@ -10,7 +10,7 @@ import {
   GET_USER
 } from "./types";
 
-const TOKEN_STORAGE_KEY = "ADMIN_TOKEN_STORAGE_KEY";
+const ADMIN_TOKEN_STORAGE_KEY = "ADMIN_TOKEN_STORAGE_KEY";
 const REMEMBER_USER_FLAG = "REMEMBER_USER_FLAG";
 const initialState = {
   authenticating: false,
@@ -38,6 +38,7 @@ const actions = {
       .then(() => {
         commit(LOGIN_SUCCESS);
       })
+
       .catch(() => commit(LOGIN_FAILURE));
   },
   logout({ commit }) {

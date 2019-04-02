@@ -31,7 +31,7 @@
                     </span>
                   </template>
                 </v-btn>
-                <v-btn color="primary" to='/'>Exit</v-btn>
+                <v-btn color="primary" to="/">Exit</v-btn>
                 <v-spacer></v-spacer>
               </v-card-actions>
             </v-card>
@@ -44,6 +44,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { setTimeout } from 'timers';
 export default {
   data() {
     return {
@@ -56,7 +57,6 @@ export default {
   computed: mapGetters("dashboard", ["errorLogin", "isSuperuser"]),
   methods: {
     login() {
-
       const payload = {
         email: this.email,
         password: this.password
@@ -68,12 +68,15 @@ export default {
           this.alert = true;
           this.loading = false;
         } else {
-          if (this.isSuperuser) {
-            this.$router.push({ name: "admin" });
-          } else {
-            this.alert = true;
-            this.loading = false;
-          }
+          const checkSuperUser = () => {
+            if (this.isSuperuser) {
+              this.$router.push({ name: "admin" });
+            } else {
+              this.alert = true;
+              this.loading = false;
+            }
+          };
+          setTimeout(checkSuperUser, 2000);
         }
       });
     }

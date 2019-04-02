@@ -40,8 +40,7 @@ export const adminRouter = {
     },
     // {
     //   path: "*",
-    //   name: "adminInfo",
-    //   component: AdminInDev
+    //   redirect: { name: "admin" }
     // },
     {
       path: "requests",
@@ -63,7 +62,15 @@ export const adminRouter = {
     if (store.getters["dashboard/isSuperuser"]) {
       next();
     } else {
-      next({ name: "adminLogin" });
+      store.dispatch("dashboard/initialize");
+      const checkSU = () => {
+        if (store.getters["dashboard/isSuperuser"]) {
+          next();
+        } else {
+          next({ name: "adminLogin" });
+        }
+      };
+      setTimeout(checkSU, 1000);
     }
   }
 };
