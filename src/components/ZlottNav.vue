@@ -7,10 +7,7 @@
         </router-link>
         <div class="links">
           <router-link class="nav-link" to="/">Team</router-link>
-          <router-link class="nav-link" v-if="!isAuthenticated" to="/login">Login</router-link>
-          <span v-else class="nav-link" @click="logout()">
-            Logout
-          </span>
+          <user-panel></user-panel>
         </div>
       </v-container>
     </v-layout>
@@ -18,14 +15,11 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import UserPanel from "@/components/UserPanel.vue";
 export default {
   name: "ZlottNav",
-  computed: mapGetters("auth", ["isAuthenticated", "user"]),
-  methods: {
-    logout() {
-      this.$store.dispatch("auth/logout");
-    }
+  components: {
+    UserPanel
   }
 };
 </script>

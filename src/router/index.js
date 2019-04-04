@@ -7,7 +7,7 @@ import RecoverPassword from "../views/RecoverPassword.vue";
 import RequestAccout from "../views/RequestAccout.vue";
 //
 import { adminLoginRouter, adminRouter } from "./admin";
-//import jobRouter from './job';
+import jobRouter from './job';
 Vue.use(Router);
 
 export default new Router({
@@ -34,7 +34,7 @@ export default new Router({
       component: RequestAccout
     },
     adminRouter,
-    adminLoginRouter
-    //jobRouter
+    adminLoginRouter,
+    jobRouter
   ]
 });

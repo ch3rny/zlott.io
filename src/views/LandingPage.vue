@@ -12,7 +12,7 @@
                   teams 80% faster
                 </h1>
                 <v-btn
-                  to="/"
+                  to="/job"
                   depressed
                   color="#0d97ff"
                   :class="{'demo_button my-5': true,
@@ -63,7 +63,7 @@
             </v-flex>
             <v-flex xs12 class="mb-5">
               <v-layout wrap justify-center>
-                <v-btn to="/" depressed color="#0d97ff" class="demo_button">Play demo</v-btn>
+                <v-btn to="/job" depressed color="#0d97ff" class="demo_button">Play demo</v-btn>
                 <v-btn
                   to="/request"
                   depressed
