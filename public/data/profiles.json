@@ -1,0 +1,172 @@
+[
+  {
+    "name": "Rahul Dhore",
+    "avatar": "https://avatars.githubusercontent.com/u/39938?",    
+    "summary": [
+      {
+        "name": "SKILL LEVEL",
+        "value": 100,
+        "items": [
+          "Experience in Front-end, Mobile",
+          "Top 5% in developer in <strong>Javascript</strong> globally. Also strong is <strong>CSS</strong>",
+          "Knows frameworks: <strong>Angular, React, Backbone</strong>"
+        ]
+      },
+      {
+        "name": "EXPERIENCE LEVEL",
+        "value": 100,
+        "items": [
+          "Work experience: <strong>8 years</strong>",
+          "<strong>90%</strong> of experience with service companies",
+          "Currently: <strong>Frontend Developer with Tech9</strong>",
+          "Studied from Saurashta University"
+        ]
+      },
+      {
+        "name": "SWITCH PROBABILITY",
+        "value": 100,
+        "items": [
+          "Currently working in: <strong>Pune</strong>",
+          "Spends ~ <strong>1 year</strong> in a company",
+          "In current role for ~ <strong>1 year</strong>"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Alasdair Mccall",
+    "avatar": "https://avatars.githubusercontent.com/u/939454?",    
+    "summary": [
+      {
+        "name": "SKILL LEVEL",
+        "value": 80,
+        "items": [
+          "Experience in Front-end, Mobile",
+          "Top 5% in developer in <strong>Javascript</strong> globally. Also strong is <strong>CSS</strong>",
+          "Knows frameworks: <strong>Angular, React, Backbone</strong>"
+        ]
+      },
+      {
+        "name": "EXPERIENCE LEVEL",
+        "value": 63,
+        "items": [
+          "Work experience: <strong>8 years</strong>",
+          "<strong>90%</strong> of experience with service companies",
+          "Currently: <strong>Frontend Developer with Tech9</strong>",
+          "Studied from Saurashta University"
+        ]
+      },
+      {
+        "name": "SWITCH PROBABILITY",
+        "value": 47,
+        "items": [
+          "Currently working in: <strong>Pune</strong>",
+          "Spends ~ <strong>1 year</strong> in a company",
+          "In current role for ~ <strong>1 year</strong>"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Vladislav Alexeev",
+    "avatar": "https://avatars.githubusercontent.com/u/640610?",    
+    "summary": [
+      {
+        "name": "SKILL LEVEL",
+        "value": 37,
+        "items": [
+          "Experience in Front-end, Mobile",
+          "Top 5% in developer in <strong>Javascript</strong> globally. Also strong is <strong>CSS</strong>",
+          "Knows frameworks: <strong>Angular, React, Backbone</strong>"
+        ]
+      },
+      {
+        "name": "EXPERIENCE LEVEL",
+        "value": 15,
+        "items": [
+          "Work experience: <strong>8 years</strong>",
+          "<strong>90%</strong> of experience with service companies",
+          "Currently: <strong>Frontend Developer with Tech9</strong>",
+          "Studied from Saurashta University"
+        ]
+      },
+      {
+        "name": "SWITCH PROBABILITY",
+        "value": 59,
+        "items": [
+          "Currently working in: <strong>Pune</strong>",
+          "Spends ~ <strong>1 year</strong> in a company",
+          "In current role for ~ <strong>1 year</strong>"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Anthony Herron",
+    "avatar": "https://avatars.githubusercontent.com/u/260697?",    
+    "summary": [
+      {
+        "name": "SKILL LEVEL",
+        "value": 100,
+        "items": [
+          "Experience in Front-end, Mobile",
+          "Top 5% in developer in <strong>Javascript</strong> globally. Also strong is <strong>CSS</strong>",
+          "Knows frameworks: <strong>Angular, React, Backbone</strong>"
+        ]
+      },
+      {
+        "name": "EXPERIENCE LEVEL",
+        "value": 80,
+        "items": [
+          "Work experience: <strong>8 years</strong>",
+          "<strong>90%</strong> of experience with service companies",
+          "Currently: <strong>Frontend Developer with Tech9</strong>",
+          "Studied from Saurashta University"
+        ]
+      },
+      {
+        "name": "SWITCH PROBABILITY",
+        "value": 75,
+        "items": [
+          "Currently working in: <strong>Pune</strong>",
+          "Spends ~ <strong>1 year</strong> in a company",
+          "In current role for ~ <strong>1 year</strong>"
+        ]
+      }
+    ]
+  }
+  ,{
+    "name": "Mark Gibaud",
+    "avatar": "https://avatars.githubusercontent.com/u/425594?",    
+    "summary": [
+      {
+        "name": "SKILL LEVEL",
+        "value": 91,
+        "items": [
+          "Experience in Front-end, Mobile",
+          "Top 5% in developer in <strong>Javascript</strong> globally. Also strong is <strong>CSS</strong>",
+          "Knows frameworks: <strong>Angular, React, Backbone</strong>"
+        ]
+      },
+      {
+        "name": "EXPERIENCE LEVEL",
+        "value": 39,
+        "items": [
+          "Work experience: <strong>8 years</strong>",
+          "<strong>90%</strong> of experience with service companies",
+          "Currently: <strong>Frontend Developer with Tech9</strong>",
+          "Studied from Saurashta University"
+        ]
+      },
+      {
+        "name": "SWITCH PROBABILITY",
+        "value": 49,
+        "items": [
+          "Currently working in: <strong>Pune</strong>",
+          "Spends ~ <strong>1 year</strong> in a company",
+          "In current role for ~ <strong>1 year</strong>"
+        ]
+      }
+    ]
+  }
+]

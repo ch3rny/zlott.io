@@ -1,12 +1,12 @@
 import JobPage from "../views/job/JobPage.vue";
 import JobCreate from "../views/job/JobCreate.vue";
-import JobCandidates from "../views/job/JobCandidates.vue";
+import JobTalents from "../views/job/JobTalents.vue";
 import AdminInDev from "../views/admin/AdminInDev.vue";
 const jobRouter = {
   path: "/job",
   name: "job",
   component: JobPage,
-  redirect: { name: "jobCandidates" },
+  redirect: { name: "jobTalentFeed" },
   children: [
     {
       path: "create",
@@ -14,9 +14,9 @@ const jobRouter = {
       component: JobCreate
     },
     {
-      path: "candidates",
-      name: "jobCandidates",
-      component: JobCandidates
+      path: "talent-feed",
+      name: "jobTalentFeed",
+      component: JobTalents
     },
     {
       path: "email",

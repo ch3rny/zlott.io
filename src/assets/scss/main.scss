@@ -1,12 +1,14 @@
 body {
   background-color: #fff;
 }
+a {
+  text-decoration: none;
+}
 .nav-link {
   font-size: 17px;
   color: #141414 !important;
   font-weight: 400;
   margin-left: 70px;
-  text-decoration: none;
   &:active:focus,
   &:focus,
   &:hover {

@@ -41,13 +41,13 @@
 
       <v-spacer></v-spacer>
       <div class="nav-tabs">
-        <router-link to="/job/candidates" tag="span">
+        <router-link to="/job/talent-feed" tag="span">
           <a>
-            <span v-show="$vuetify.breakpoint.mdAndUp">Shortlist candidates</span>
-            <v-icon v-show="$vuetify.breakpoint.smAndDown">supervisor_account</v-icon>
+            <span >Talent Feed</span>
+            <!-- <v-icon v-show="$vuetify.breakpoint.smAndDown">supervisor_account</v-icon> -->
           </a>
         </router-link>
-        <router-link :to="{name: 'jobEmails'}" tag="span">
+        <!-- <router-link :to="{name: 'jobEmails'}" tag="span">
           <a>
             <span v-show="$vuetify.breakpoint.mdAndUp">Email shortlist</span>
             <v-icon v-show="$vuetify.breakpoint.smAndDown">email</v-icon>
@@ -58,7 +58,7 @@
             <span v-show="$vuetify.breakpoint.mdAndUp">Manage responded candidates</span>
             <v-icon v-show="$vuetify.breakpoint.smAndDown">import_export</v-icon>
           </a>
-        </router-link>
+        </router-link> -->
       </div>
       <v-spacer></v-spacer>
       <user-panel></user-panel>
@@ -100,7 +100,7 @@ export default {
         name: "jobCreate"
       });
     }
-  }
+  },
 };
 </script>
 <style lang="scss" scoped>

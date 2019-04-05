@@ -66,13 +66,16 @@
               :items="city_names"
               single-line
               multiple
+              chips
+              deletable-chips
+              color="#419bf9"
               label="Type and select location"
             />
           </v-flex>
         </v-layout>
       </v-card>
       <v-btn
-        to="/request"
+        @click="postJob()"
         depressed
         outline
         color="#82d8b6"
@@ -83,6 +86,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import MoreLessButton from "@/components/MoreLessButton.vue";
 export default {
   name: "JobCreate",
@@ -519,9 +523,17 @@ export default {
       ]
     };
   },
+  computed: mapGetters("auth", ["user"]),
   methods: {
     onClickChild(value) {
       this.showIndex = value;
+    },
+    postJob() {
+      this.job.author = this.user.id;
+      // localStorage.setItem("job", JSON.stringify(this.job));
+      this.$router.push({
+        name: 'jobTalentFeed'
+      })
     }
   }
 };

@@ -1,0 +1,28 @@
+-----
+get, post api-v1/jobs 
+
+response
+
+{
+  "author": user foreign key
+  "title": string,
+  "role": Array of strings (!!!Скорее всего должно быть!!!! Many-to-Many field 
+              (если будет создана отдельная модель для job_role(должность) )),
+  "key_skills": Array of strings (!!!Скорее всего должно быть!!!! Many-to-Many field 
+              (если будет создана отдельная модель для key_skills(ключевые навыки) )),
+  "expirience: Array of number (например [0, 5] - опыт работы от и до),
+  "location": Array of strings (!!!Скорее всего должно быть!!!! Many-to-Many field 
+              (если будет создана отдельная модель для location(место) ))
+}
+
+get, put, patch, delete api-v1/jobs/{id}
+
+Если будете добавлять модели role, key_skills, location - что скорее всего будет нужно
+и оправдано архитектурой бд, то дополнительные url
+
+get api-v1/roles
+    api-v1/key-skills
+    api-v1/locations
+
+
+

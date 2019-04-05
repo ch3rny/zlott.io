@@ -1,9 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "@/api";
 
-axios.defaults.xsrfHeaderName = "X-CSRFToken";
-axios.defaults.xsrfCookieName = "csrftoken";
-
 const getRequests = () => axios.get(`${BASE_URL}/request-account/`);
 const getRequest = id => axios.get(`${BASE_URL}/request-account/${id}`);
 const postRequest = payload =>
