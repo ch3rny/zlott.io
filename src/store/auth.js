@@ -86,6 +86,7 @@ const mutations = {
     state.error = false;
     localStorage.setItem(REMEMBER_USER_FLAG, false);
     state.remember = false;
+    state.user = {};
   },
   [SET_TOKEN](state, token) {
     localStorage.setItem(TOKEN_STORAGE_KEY, token);

@@ -1,7 +1,7 @@
 <template>
   <span>
     <router-link class="nav-link" v-if="!isAuthenticated" to="/login">Login</router-link>
-    <span v-else class="nav-link" >
+    <span v-else class="nav-link">
       {{user.username}}
       <v-menu bottom left>
         <template v-slot:activator="{ on }">
@@ -10,7 +10,7 @@
           </v-btn>
         </template>
         <v-list class="elevation-0">
-          <v-list-tile @click="logout">
+          <v-list-tile @click="logout()">
             <v-list-tile-title>Logout</v-list-tile-title>
           </v-list-tile>
         </v-list>
@@ -27,6 +27,7 @@ export default {
   methods: {
     logout() {
       this.$store.dispatch("auth/logout");
+      this.$router.push("/");
     }
   }
 };

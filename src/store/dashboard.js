@@ -51,7 +51,7 @@ const actions = {
     const token = localStorage.getItem(ADMIN_TOKEN_STORAGE_KEY);
     if (token) {
       commit(SET_TOKEN, token);
-      api.auth.getUser().then(res => commit(GET_USER, res.data));
+      //api.auth.getUser().then(res => commit(GET_USER, res.data));
     } else {
       commit(REMOVE_TOKEN);
     }

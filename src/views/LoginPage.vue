@@ -88,12 +88,12 @@ export default {
         email: email,
         password: password
       };
-      if (this.rememberUser) {
-        this.$store.dispatch("auth/rememberUser", this.rememberUser);
-      }
+      // if (this.rememberUser) {
+      //   this.$store.dispatch("auth/rememberUser", this.rememberUser);
+      // }
       this.$store.dispatch("auth/login", payload).then(() => {
         if (!this.errorLogin) {
-          this.$router.push("/");
+          this.$router.push({ name: "job" });
         }
       });
     }

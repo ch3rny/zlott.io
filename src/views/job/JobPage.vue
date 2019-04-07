@@ -56,6 +56,7 @@
         <router-link to="/job/manage-candidates" tag="span">
           <a>
             <span v-show="$vuetify.breakpoint.mdAndUp">Manage responded candidates</span>
+            
             <v-icon v-show="$vuetify.breakpoint.smAndDown">import_export</v-icon>
           </a>
         </router-link> -->
