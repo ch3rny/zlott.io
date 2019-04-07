@@ -12,7 +12,7 @@
                   teams 80% faster
                 </h1>
                 <v-btn
-                  to="/job"
+                  :to="{name: 'job'}"
                   depressed
                   color="#0d97ff"
                   :class="{'demo_button my-5': true,

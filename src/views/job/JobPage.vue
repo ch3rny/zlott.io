@@ -41,9 +41,9 @@
 
       <v-spacer></v-spacer>
       <div class="nav-tabs">
-        <router-link to="/job/talent-feed" tag="span">
+        <router-link to="/job/talents" tag="span">
           <a>
-            <span >Talent Feed</span>
+            <span>Talent Feed</span>
             <!-- <v-icon v-show="$vuetify.breakpoint.smAndDown">supervisor_account</v-icon> -->
           </a>
         </router-link>
@@ -59,7 +59,7 @@
             
             <v-icon v-show="$vuetify.breakpoint.smAndDown">import_export</v-icon>
           </a>
-        </router-link> -->
+        </router-link>-->
       </div>
       <v-spacer></v-spacer>
       <user-panel></user-panel>
@@ -101,7 +101,7 @@ export default {
         name: "jobCreate"
       });
     }
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>

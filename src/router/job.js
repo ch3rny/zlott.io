@@ -2,6 +2,7 @@ import JobPage from "../views/job/JobPage.vue";
 import JobCreate from "../views/job/JobCreate.vue";
 import JobTalents from "../views/job/JobTalents.vue";
 import AdminInDev from "../views/admin/AdminInDev.vue";
+
 const jobRouter = {
   path: "/job",
   name: "job",
@@ -14,7 +15,7 @@ const jobRouter = {
       component: JobCreate
     },
     {
-      path: "talent-feed",
+      path: "talents",
       name: "jobTalentFeed",
       component: JobTalents
     },
@@ -24,7 +25,7 @@ const jobRouter = {
       component: AdminInDev
     },
     {
-      path: "manage-candidates",
+      path: "manage",
       name: "jobManage",
       component: AdminInDev
     }

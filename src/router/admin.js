@@ -1,59 +1,45 @@
-// admin pages
-import AdminLogin from "../views/admin/AdminLogin.vue";
 import AdminIndex from "../views/admin/AdminIndex.vue";
 import AdminUsers from "../views/admin/AdminUsers.vue";
 import AdminCreateUser from "../views/admin/AdminCreateUser.vue";
-//import AdminInfo from "../views/admin/AdminInfo.vue";
 import AdminRequests from "../views/admin/AdminRequests.vue";
 import AdminUserEdit from "../views/admin/AdminUserEdit.vue";
 import AdminAcceptRequest from "../views/admin/AdminAcceptRequest.vue";
 import AdminInDev from "../views/admin/AdminInDev.vue";
-//
 import store from "@/store";
 
-export const adminLoginRouter = {
-  path: "/admin_32xtv/login",
-  name: "adminLogin",
-  component: AdminLogin
-};
-
-export const adminRouter = {
+const adminRouter = {
   path: "/admin_32xtv",
   name: "admin",
   component: AdminIndex,
   redirect: { name: "adminUsers" },
   children: [
     {
-      path: "users",
+      path: "/users",
       name: "adminUsers",
       component: AdminUsers
     },
     {
-      path: "users/:id",
+      path: "/users/:id",
       name: "adminUserEdit",
       component: AdminUserEdit
     },
     {
-      path: "users/create",
+      path: "/users/create",
       name: "adminUserCreate",
       component: AdminCreateUser
     },
-    // {
-    //   path: "*",
-    //   redirect: { name: "admin" }
-    // },
     {
-      path: "requests",
+      path: "/requests",
       name: "adminRequests",
       component: AdminRequests
     },
     {
-      path: "requests/:id",
+      path: "/requests/:id",
       name: "adminRequestsAccept",
       component: AdminAcceptRequest
     },
     {
-      path: "in-dev",
+      path: "/indev",
       name: "adminJobs",
       component: AdminInDev
     }
@@ -74,3 +60,5 @@ export const adminRouter = {
     }
   }
 };
+
+export default adminRouter;
