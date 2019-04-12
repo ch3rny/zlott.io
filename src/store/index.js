@@ -2,13 +2,12 @@ import Vue from "vue";
 import Vuex from "vuex";
 import auth from "./auth";
 import password from "./password";
-import dashboard from './dashboard';
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
     auth,
-    password,
-    dashboard
+    password
   }
 });

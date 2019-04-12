@@ -4,7 +4,7 @@
       <v-flex xs12 md9 lg10>
         <v-layout>
           <div class="title">
-            Viewing: All (10)
+            Viewing: All ({{users.length}})
             <v-menu bottom left>
               <template v-slot:activator="{ on }">
                 <v-btn icon v-on="on">
@@ -41,6 +41,7 @@
 <script>
 import ProfileCard from "@/components/ProfileCard.vue";
 import axios from "axios";
+
 export default {
   components: {
     ProfileCard
@@ -51,7 +52,32 @@ export default {
       shortlist: []
     };
   },
+  watch: {
+    $route() {
+      this.users = this.shuffle(this.users);
+      this.$forceUpdate();
+    }
+  },
   methods: {
+    shuffle(array) {
+      let counter = array.length;
+
+      // While there are elements in the array
+      while (counter > 0) {
+        // Pick a random index
+        let index = Math.floor(Math.random() * counter);
+
+        // Decrease counter by 1
+        counter--;
+
+        // And swap the last element with it
+        let temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+      }
+
+      return array;
+    },
     addToShortList(value) {
       const index = this.shortlist.indexOf(value);
       index >= 0 ? this.shortlist.splice(index, 1) : this.shortlist.push(value);

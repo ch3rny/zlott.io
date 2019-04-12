@@ -1,114 +1,108 @@
 <template>
-  <v-app>
-    <v-layout pa-4 column class="job__form">
-      <p class="title">Create Job</p>
-      <form action>
-        <v-card class="elevation-0 section pa-4">
+  <v-layout column class="job__form">
+    <p class="title">Edit Job</p>
+    <v-card class="elevation-0 section pa-4">
+      <v-layout wrap>
+        <v-flex xs4 class="job__label pr-4">Owner</v-flex>
+        <v-flex xs8 mb-4>
+          <v-autocomplete
+            v-model="job.owner"
+            :items="users"
+            item-text="username"
+            item-value="id"
+            single-line
+            color="#419bf9"
+            label="Select owner "
+          />
+        </v-flex>
+        <v-flex xs4 class="job__label pr-4">
+          Title*
+          <br>
+          <span>(Ex.: Senior Software Developer)</span>
+        </v-flex>
+        <v-flex xs8 mb-4>
+          <v-text-field v-model="job.title" label="Enter job title" single-line></v-text-field>
+        </v-flex>
+        <v-flex xs4 class="job__label role pr-4">Job Role*</v-flex>
+        <v-flex xs8 mb-4>
           <v-layout wrap>
-            <v-flex xs4 class="job__label pr-4">
-              Title*
-              <br>
-              <span>(Ex.: Senior Software Developer)</span>
-            </v-flex>
-            <v-flex xs8 mb-4>
-              <v-text-field
-                v-model="job.title"
-                label="Enter job title"
-                single-line
-                v-validate="'required|max:250'"
-                :counter="250"
-                :error-messages="errors.collect('title')"
-                data-vv-name="title"
-                required
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs4 class="job__label role pr-4">Job Role*</v-flex>
-            <v-flex xs8 mb-4>
-              <v-layout wrap>
-                <v-flex xs12 sm6 v-for="(item, index) in jobRole" :key="index">
-                  <v-checkbox
-                    :label="item"
-                    color="#419bf9"
-                    :value="item"
-                    v-show="index<=showIndex"
-                    v-model="job.role"
-                    hide-details
-                  ></v-checkbox>
-                </v-flex>
-              </v-layout>
-              <v-flex xs12 sm6>
-                <more-less-button
-                  :itemsLength="jobRole.length"
-                  :showItems="6"
-                  @clicked="onClickChild"
-                />
-              </v-flex>
-            </v-flex>
-            <v-flex xs4 class="job__label pr-4">Key Skills</v-flex>
-            <v-flex xs8 mb-4>
-              <v-autocomplete
-                v-model="job.keySkills"
-                :items="keySkills"
-                single-line
-                chips
-                deletable-chips
+            <v-flex xs12 sm6 v-for="(item, index) in jobRole" :key="index">
+              <v-checkbox
+                :label="item"
                 color="#419bf9"
-                label="Select key skills "
-                multiple
-              />
-            </v-flex>
-            <v-flex xs4 class="job__label pr-4">Years of Work Expirience*</v-flex>
-            <v-flex xs8>
-              <v-range-slider
-                v-model="job.expirience"
-                :max="20"
-                :min="0"
-                :step="1"
-                :thumb-size="24"
-                thumb-label="always"
-                color="#65c178"
-              ></v-range-slider>
-            </v-flex>
-            <v-flex xs4 class="job__label pr-4">Location*</v-flex>
-            <v-flex xs8 mb-4>
-              <v-autocomplete
-                v-model="job.location"
-                :items="city_names"
-                single-line
-                multiple
-                chips
-                deletable-chips
-                color="#419bf9"
-                label="Type and select location"
-              />
+                :value="item"
+                v-show="index<=showIndex"
+                v-model="job.role"
+                hide-details
+              ></v-checkbox>
             </v-flex>
           </v-layout>
-        </v-card>
-      </form>
-      <v-btn
-        @click="postJob()"
-        depressed
-        outline
-        color="#82d8b6"
-        class="generate__button"
-      >Save and Generate Recommendations</v-btn>
-    </v-layout>
-  </v-app>
+          <v-flex xs12 sm6>
+            <more-less-button :itemsLength="jobRole.length" :showItems="6" @clicked="onClickChild"/>
+          </v-flex>
+        </v-flex>
+        <v-flex xs4 class="job__label pr-4">Key Skills</v-flex>
+        <v-flex xs8 mb-4>
+          <v-autocomplete
+            v-model="job.keySkills"
+            :items="keySkills"
+            single-line
+            chips
+            deletable-chips
+            color="#419bf9"
+            label="Select key skills "
+            multiple
+          />
+        </v-flex>
+        <v-flex xs4 class="job__label pr-4">Years of Work Expirience*</v-flex>
+        <v-flex xs8>
+          <v-range-slider
+            v-model="job.expirience"
+            :max="20"
+            :min="0"
+            :step="1"
+            :thumb-size="24"
+            thumb-label="always"
+            color="#65c178"
+          ></v-range-slider>
+        </v-flex>
+        <v-flex xs4 class="job__label pr-4">Location*</v-flex>
+        <v-flex xs8 mb-4>
+          <v-autocomplete
+            v-model="job.location"
+            :items="city_names"
+            single-line
+            multiple
+            chips
+            deletable-chips
+            color="#419bf9"
+            label="Type and select location"
+          />
+        </v-flex>
+      </v-layout>
+    </v-card>
+    <v-flex>
+      <v-btn color="#419bf9" @click="postJob()" dark>Save</v-btn>
+      <v-btn color="red" :to="{name: 'adminJobs'}" dark>Cancel</v-btn>
+    </v-flex>
+  </v-layout>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import api from "@/api";
 import MoreLessButton from "@/components/MoreLessButton.vue";
+import api from "@/api";
 export default {
-  name: "JobCreate",
+  name: "AdminJobEdit",
   components: {
     MoreLessButton
   },
   data() {
     return {
+      users: [],
       showIndex: 6,
       job: {
+        owner: "",
         title: "",
         role: [],
         keySkills: [],
@@ -535,21 +529,11 @@ export default {
       ]
     };
   },
-  computed: {
-    jobRoleLength() {
-      return this.job.role.length;
-    },
-    locationLength() {
-      return this.job.location.length;
-    },
-    ...mapGetters("auth", ["user"])
-  },
   methods: {
     onClickChild(value) {
       this.showIndex = value;
     },
     postJob() {
-      this.job.author = this.user.id;
       const payload = {
         data: {
           role: this.job.role,
@@ -559,15 +543,22 @@ export default {
         },
         title: this.job.title,
         years_work_experience: this.job.expirience[0],
-        owner: this.user.id
+        owner: this.job.owner
       };
       api.job.postJob(payload).then(
         this.$forceUpdate(),
         this.$router.push({
-          name: "jobTalentFeed"
+          name: "adminJobs"
         })
       );
     }
+  },
+  created() {
+    api.user.getUsers().then(res => {
+      this.users = res.data;
+      this.$forceUpdate();
+    });
+    this.$forceUpdate();
   }
 };
 </script>
@@ -593,16 +584,5 @@ export default {
 .v-card {
   border: 1px #e4e5e6 solid;
   border-radius: 5px;
-}
-.generate__button {
-  border-width: 2px;
-  border-radius: 5px;
-  margin: 30px auto;
-  width: 300px;
-  text-transform: none;
-  &::before {
-    background-color: #fff;
-    opacity: 1;
-  }
 }
 </style>

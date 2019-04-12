@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-layout pa-4 column class="job__form">
-      <p class="title">Create Job</p>
+      <p class="title">Edit Existing Job</p>
       <form action>
         <v-card class="elevation-0 section pa-4">
           <v-layout wrap>
@@ -85,13 +85,7 @@
           </v-layout>
         </v-card>
       </form>
-      <v-btn
-        @click="postJob()"
-        depressed
-        outline
-        color="#82d8b6"
-        class="generate__button"
-      >Save and Generate Recommendations</v-btn>
+      <v-btn @click="saveJob()" depressed outline color="#82d8b6" class="generate__button">Save</v-btn>
     </v-layout>
   </v-app>
 </template>
@@ -101,7 +95,7 @@ import { mapGetters } from "vuex";
 import api from "@/api";
 import MoreLessButton from "@/components/MoreLessButton.vue";
 export default {
-  name: "JobCreate",
+  name: "JobEdit",
   components: {
     MoreLessButton
   },
@@ -548,8 +542,7 @@ export default {
     onClickChild(value) {
       this.showIndex = value;
     },
-    postJob() {
-      this.job.author = this.user.id;
+    saveJob() {
       const payload = {
         data: {
           role: this.job.role,
@@ -561,13 +554,22 @@ export default {
         years_work_experience: this.job.expirience[0],
         owner: this.user.id
       };
-      api.job.postJob(payload).then(
-        this.$forceUpdate(),
-        this.$router.push({
-          name: "jobTalentFeed"
-        })
-      );
+      api.job
+        .patchJob(this.$route.params.id, payload)
+        .then(this.$router.push({ name: "job" }));
     }
+  },
+  mounted() {
+    api.job.getJob(this.$route.params.id).then(res => {
+      let data = {
+        title: res.data.title,
+        role: res.data.data.role,
+        keySkills: res.data.data.keySkills,
+        expirience: res.data.data.expirience,
+        location: res.data.data.location
+      };
+      this.job = data;
+    });
   }
 };
 </script>

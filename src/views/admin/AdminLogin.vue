@@ -11,7 +11,15 @@
               <v-card-text>
                 <v-form>
                   <v-text-field prepend-icon="person" label="Email" v-model="email"></v-text-field>
-                  <v-text-field prepend-icon="lock" label="Password" v-model="password"></v-text-field>
+                  <v-text-field
+                    prepend-icon="lock"
+                    label="Password"
+                    :append-icon="showPassword ? 'visibility' : 'visibility_off'"
+                    :type="showPassword ? 'text' : 'password'"
+                    v-model="password"
+                    @click:append="showPassword = !showPassword"
+                    @keyup.enter="login()"
+                  ></v-text-field>
                 </v-form>
               </v-card-text>
               <v-alert
@@ -44,17 +52,18 @@
 
 <script>
 import { mapGetters } from "vuex";
-import { setTimeout } from 'timers';
+import { setTimeout } from "timers";
 export default {
   data() {
     return {
       email: "",
       password: "",
       loading: false,
-      alert: false
+      alert: false,
+      showPassword: false
     };
   },
-  computed: mapGetters("dashboard", ["errorLogin", "isSuperuser"]),
+  computed: mapGetters("auth", ["errorLogin", "isStaff"]),
   methods: {
     login() {
       const payload = {
@@ -63,13 +72,13 @@ export default {
       };
       this.loading = true;
 
-      this.$store.dispatch("dashboard/login", payload).then(() => {
+      this.$store.dispatch("auth/login", payload).then(() => {
         if (this.errorLogin) {
           this.alert = true;
           this.loading = false;
         } else {
           const checkSuperUser = () => {
-            if (this.isSuperuser) {
+            if (this.isStaff) {
               this.$router.push({ name: "admin" });
             } else {
               this.alert = true;

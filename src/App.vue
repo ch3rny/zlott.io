@@ -10,8 +10,6 @@ export default {
   computed: mapGetters("auth", ["isRemembered", "user"]),
   created() {
     this.$store.dispatch("auth/initialize");
-    this.$store.dispatch("dashboard/initialize");
-  },
-  
+  }
 };
 </script>

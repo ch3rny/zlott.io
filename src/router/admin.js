@@ -4,7 +4,9 @@ import AdminCreateUser from "../views/admin/AdminCreateUser.vue";
 import AdminRequests from "../views/admin/AdminRequests.vue";
 import AdminUserEdit from "../views/admin/AdminUserEdit.vue";
 import AdminAcceptRequest from "../views/admin/AdminAcceptRequest.vue";
-import AdminInDev from "../views/admin/AdminInDev.vue";
+import AdminJob from "../views/admin/AdminJob.vue";
+import AdminJobEdit from "../views/admin/AdminJobEdit.vue";
+import AdminJobCreate from "../views/admin/AdminJobCreate.vue";
 import store from "@/store";
 
 const adminRouter = {
@@ -14,43 +16,53 @@ const adminRouter = {
   redirect: { name: "adminUsers" },
   children: [
     {
-      path: "/users",
+      path: "users",
       name: "adminUsers",
       component: AdminUsers
     },
     {
-      path: "/users/:id",
+      path: "users/:id",
       name: "adminUserEdit",
       component: AdminUserEdit
     },
     {
-      path: "/users/create",
+      path: "users/create",
       name: "adminUserCreate",
       component: AdminCreateUser
     },
     {
-      path: "/requests",
+      path: "requests",
       name: "adminRequests",
       component: AdminRequests
     },
     {
-      path: "/requests/:id",
+      path: "requests/:id",
       name: "adminRequestsAccept",
       component: AdminAcceptRequest
     },
     {
-      path: "/indev",
+      path: "job",
       name: "adminJobs",
-      component: AdminInDev
+      component: AdminJob
+    },
+    {
+      path: "job/:id",
+      name: "adminJobEdit",
+      component: AdminJobEdit
+    },
+    {
+      path: "job/create",
+      name: "adminJobCreate",
+      component: AdminJobCreate
     }
   ],
   beforeEnter(to, from, next) {
-    if (store.getters["dashboard/isSuperuser"]) {
+    if (store.getters["auth/isStaff"]) {
       next();
     } else {
-      store.dispatch("dashboard/initialize");
+      store.dispatch("auth/initialize");
       const checkSU = () => {
-        if (store.getters["dashboard/isSuperuser"]) {
+        if (store.getters["auth/isStaff"]) {
           next();
         } else {
           next({ name: "adminLogin" });

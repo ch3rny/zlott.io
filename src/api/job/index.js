@@ -1,15 +1,19 @@
 import axios from "axios";
 import { BASE_URL } from "@/api";
 
-const getJobs = user => axios.get(`${BASE_URL}/jobs/`); //add user id filter
-const postJobs = payload => axios.post(`${BASE_URL}/jobs/`, payload);
-const getJob = id => axios.get(`${BASE_URL}/jobs/${id}`);
-const patchJob = id => axios.patch(`${BASE_URL}/jobs/${id}`);
-const deleteJob = id => axios.delete(`${BASE_URL}/jobs/${id}`);
+const getJobs = owner => axios.get(`${BASE_URL}/job/?owner=${owner}`); //add user id filter
+const getJobsAdmin = () => axios.get(`${BASE_URL}/job/`);
+const postJob = payload => axios.post(`${BASE_URL}/job/`, payload);
+const getJob = id => axios.get(`${BASE_URL}/job/${id}/`);
+const patchJob = (id, payload) =>
+  axios.patch(`${BASE_URL}/job/${id}/`, payload);
+const deleteJob = (id, payload) =>
+  axios.delete(`${BASE_URL}/job/${id}/`, payload);
 
 export default {
   getJobs,
-  postJobs,
+  getJobsAdmin,
+  postJob,
   getJob,
   patchJob,
   deleteJob

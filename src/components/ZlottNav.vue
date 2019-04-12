@@ -1,7 +1,7 @@
 <template>
   <v-toolbar flat color="#f0f0f0">
-    <v-layout>
-      <v-container align-center justify-space-between row fill-height>
+    <v-layout fill-height>
+      <v-container align-center justify-space-between row fill-height py-0>
         <router-link to="/">
           <img :src="require('@/assets/images/logo.svg')" contain height="20" width="90">
         </router-link>
@@ -30,8 +30,7 @@ export default {
 }
 .links {
   display: flex;
-}
-.nav-link {
-  line-height: 48px !important;
+  height: 100%;
+  align-items: center;
 }
 </style>

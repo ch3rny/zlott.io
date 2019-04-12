@@ -27,7 +27,9 @@
       </v-toolbar-title>
       <v-spacer/>
       <v-toolbar-items>
-        <v-btn flat large color="white" to="/">EXIT</v-btn>
+        <v-btn flat large color="white" to="/">
+          <v-icon>exit_to_app</v-icon>EXIT
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <v-content>
